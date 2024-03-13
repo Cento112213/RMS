@@ -47,11 +47,18 @@ Class AuthServiceImpl implements AuthService
             'firstname' => 'required',
             'lastname' => 'required',
             'address' => 'required',
-            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:5120',
+            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        if($validator->fails() and $validatedUserDetails){
+        if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        if (empty($validatedUserDetails)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed.',
+                ], 400);
         }
     
         $user = User::create(array_merge(
