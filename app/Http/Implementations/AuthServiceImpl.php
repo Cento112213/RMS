@@ -47,13 +47,13 @@ Class AuthServiceImpl implements AuthService
             'firstname' => 'required',
             'lastname' => 'required',
             'address' => 'required',
-            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
-        if($validator->fails()){
+        if($validator->fails() and $validatedUserDetails){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        
+    
         $user = User::create(array_merge(
                     $validator->validated(),
                     ['password' => bcrypt($request->password)]
@@ -65,8 +65,8 @@ Class AuthServiceImpl implements AuthService
                     'profile_picture' => $request->file('profile_picture')->store('profile_pictures', 'public'),
                 ]);
         
-        
         return response()->json([
+            'success' => true,
             'message' => 'User successfully registered',
             'user' => $user
         ], 201);
