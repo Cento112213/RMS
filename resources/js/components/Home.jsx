@@ -1,19 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import HomePage from "../pages/HomePage";
+import RegistrationPage from "../pages/RegistrationPage";
 
-export default function Home(){
+export default function Home() {
     return (
-        <div>
-            <h1>hello world</h1>
-            <form action="">
-                <input type="text" />
-                <button type='submit'>submit</button>
-            </form>
-        </div>
-        
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/register" element={<RegistrationPage />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
-const container = document.getElementById('app');
+const container = document.getElementById("app");
 const root = ReactDOM.createRoot(container);
-root.render(<Home/>)
+root.render(<Home />);

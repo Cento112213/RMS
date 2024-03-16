@@ -1,0 +1,158 @@
+.registration {
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 5px;
+    height: 35rem;
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: rgb(81, 81, 248);
+    margin: auto;
+}
+
+.registration__header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(216, 216, 216);
+    padding: 10px 20px;
+}
+
+.header__name {
+    font-size: 20px;
+}
+
+.header__button {
+    border: none;
+    background: none;
+    border-radius: 50%;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.header__button:hover {
+    background: rgb(81, 81, 248);
+    color: white;
+}
+
+.registration__form {
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.form__title {
+    align-self: flex-start;
+    font-weight: 500;
+}
+
+.error__message {
+    color: crimson;
+    position: absolute;
+    top: 80px;
+}
+
+.input__container {
+    display: flex;
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.error__container {
+    display: flex;
+}
+
+.label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-right: 10px;
+}
+
+.error__label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: crimson;
+}
+
+.registration__input {
+    padding: 10px;
+    border: none;
+    background: rgb(240, 239, 239);
+    outline: none;
+    border-radius: 3px;
+    width: 17.5rem;
+}
+
+.form__submit {
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    padding: 10px;
+    background: rgb(81, 81, 248);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.form__submit:hover {
+    transform: scale(1.05);
+}
+.form__submit:active {
+    transform: scale(0.9);
+}
+
+.divition__section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.divition {
+    height: 2px;
+    width: 100%;
+    /* background: rgb(81, 81, 248); */
+    background: rgb(219, 219, 226);
+}
+
+.or {
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+.registration__social {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.social__button {
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: rgb(81, 81, 248);
+    font-weight: 700;
+    font-size: 11px;
+    transition: 0.2s ease-in-out;
+}
+
+.social__button:hover {
+    transform: scale(1.05);
+}
