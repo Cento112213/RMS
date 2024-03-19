@@ -56,7 +56,18 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
     
-    public function userdetail(){
+    public function userdetail()
+    {
         return $this->hasOne(UserDetail::class);
+    }
+
+    public function stacks()
+    {
+        return $this->belongsToMany(Stack::class);
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
     }
 }
