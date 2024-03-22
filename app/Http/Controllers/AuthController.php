@@ -60,5 +60,14 @@ class AuthController extends Controller
         return $this->authService->refresh();
     }
 
+    public function userProfile()
+    {
+        return $this->authService->userProfile();
+    }
+
+    public function updateUserProfile(Request $request)
+    {
+        return $this->authService->updateUserProfile($request);
+    }
 
 }
