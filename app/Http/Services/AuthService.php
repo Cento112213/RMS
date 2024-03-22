@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 interface AuthService
 {
 
-    public function __construct();
-
     /**
      * Interface for Login user using email and password
      *
@@ -38,4 +36,7 @@ interface AuthService
      */
     public function refresh();
 
+    public function userProfile();
+
+    public function updateUserProfile(Request $request);
 }

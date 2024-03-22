@@ -6,11 +6,13 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Validator;
 use App\Http\Services\AuthService;
+use App\Http\Services\EmailVerificationService;
+use App\Models\UserDetail;
 
 Class AuthServiceImpl implements AuthService
 {
     
-    public function __construct() {
+    public function __construct(private EmailVerificationService $emailVerificationService) {
     }
 
 
@@ -65,6 +67,9 @@ Class AuthServiceImpl implements AuthService
                     $validator->validated(),
                     ['password' => bcrypt($request->password)]
                 ));
+        if ($user){
+            $this->emailVerificationService->sendVerificationLink($user);
+        }
         $user->userdetail()->create([
                     'firstname' => $validatedUserDetails['firstname'],
                     'lastname' => $validatedUserDetails['lastname'],
@@ -102,7 +107,37 @@ Class AuthServiceImpl implements AuthService
      * @return \Illuminate\Http\JsonResponse
      */
     public function userProfile() {
-        return response()->json(auth()->user());
+
+        $user_details = User::with('userdetail')->where('id', auth()->user()->id)->get();
+
+        if(!auth()->user())
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized',
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User successfully fetch user details',
+            'user_profile' => $user_details
+        ]);
+    }
+    public function updateUserProfile(Request $request)
+    {
+        $user_update = UserDetail::findOrFail(auth()->user()->id);
+        // ->update($request->only(
+        //     'firstname',
+        //     'lastname',
+        //     'address',
+        // ));
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User successfully updated details',
+            'user_update' => $user_update
+        ]);
     }
     /**
      * Get the token array structure.
